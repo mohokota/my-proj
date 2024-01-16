@@ -1,0 +1,53 @@
+<%- include("../partials/head.ejs") %>
+
+<body>
+    <%- include("../partials/navbar.ejs") %>
+
+    <section class="box box-quiz">
+        <div class="item-quiz">
+            <table> 
+                <caption>Language Fanatic</caption>
+                <thead>
+                    <tr class="row1">
+                        <th style="background-color:chartreuse;"></th>
+                        <th>AME</th>
+                        <th>BRE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row2">
+                        <td style="background-color:chartreuse; color: black; font-size: 12px;"> (<%=q.fn%>)</td>
+                        <td> <%=q.ae%></td>
+                        <td> <%=q.be%></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="checkedAns">
+            <% if(locals.check) { %>
+                <% if(locals.check !== 'correct') { %>
+                    <p>your answer is: <span style="color:red"><%=check%></span></p>
+                <% } else { %>
+                    <p>your answer is: <span style="color:green"><%=check%></span></p>
+                <% } %> 
+            <% } else { %>
+                <p>Let's start</p>
+            <% }  %>
+
+            <p> score: <%=score%> </p>
+        </div>
+    </section>
+
+    <section class="box box-ans">
+        <form action="/lang1" method="post" >
+            <label for="ans">Your answer : </label>
+            <input type="text" name="ans" size="30px" autofocus placeholder="type here.." id="ans">
+        </form>
+    </section>
+    
+
+
+</body>
+</html>
+

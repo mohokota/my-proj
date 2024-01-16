@@ -1,0 +1,177 @@
+<%- include("../partials/head.ejs") %>
+
+<body>
+    <%- include("../partials/navbar.ejs") %>
+    
+    <section class="bg-git">
+        <h3>Basic Git Commands</h3>
+        <div class="box-git">
+            <button type="button" class="collapsible">USER CONFIGURATION</button>
+            <div class="collapsible-content">
+                <p>config identity information used across local repositories</p>  
+                <code class="code">git config --global user.name <span class="grey-fnt">"myName"</span> </code>  <br> 
+                <code class="code">git config --global user.email <span class="grey-fnt">"myEmail"</span> </code> <br> 
+                <pre>...optional...</pre>
+                <p>set default branch when initializing an empty repo locally</p>
+                <code class="code">git config --global init.defaultBranch <span class="grey-fnt">"main" </span> </code> 
+                <p>set default editor, <a href="https://git-scm.com/book/en/v2/Appendix-C%3A-Git-Commands-Setup-and-Config#ch_core_editor">read</a></p>
+                <code class="code">git config --global core.editor <span class="grey-fnt">"code --wait" </span> </code> 
+            </div>
+        </div>
+        
+        <div class="box-git">
+            <button type="button" class="collapsible">SETUP GIT REPO</button>
+            <div class="collapsible-content">
+                <p>create new local repo</p>  
+                <code class="code">git init</code> <br>
+                <p>or clone from existing repo </p>  
+                <code class="code">git clone <span class="grey-fnt">&lt;url&gt;</span> </code> <br> 
+                
+                <pre>...</pre>
+                <p>show config info</p>
+                <code class="code">git config --global --list</code> <br> 
+                <p>show all directories</p>  
+                <code class="code">ls -al</code> <br> 
+                <p>remove local repo from git system (delete all commits)</p>  
+                <code class="code">rm -rf .git/</code> <br> 
+            </div>
+        </div>
+
+        <div class="box-git">
+            <button type="button" class="collapsible">WORKING WITH GIT FILES</button>
+            <div class="collapsible-content">
+                <p>add file to stagging area for the next commit</p>  
+                <code class="code">git add <span class="grey-fnt">file</span></code> <br>
+                <p>unstage file, but keep the changes in file</p>  
+                <code class="code">git rm --cached <span class="grey-fnt">file</span></code> <br>
+                <pre>...</pre>
+                <p>restore to the last committed state (discard previous changes)<br>  
+                <code class="code">git restore <span class="grey-fnt">file</span> </code> <br>
+                <p>show current changes in unstaged file</p>  
+                <code class="code">git diff <span class="grey-fnt">file</span> </code> <br>
+                <p>show current changes in staged file only </p>  
+                <code class="code">git diff --staged <span class="grey-fnt">file</span> </code> <br>
+                <pre>...</pre>
+                <p>show status of all files and directories in working directories and stagging srea</p>  
+                <code class="code">git status </code> <br> 
+                <p> commit a staged file locally as a new commit snapshot </p>  
+                <code class="code">git commit -m <span class="grey-fnt">"descriptive message"</span></code> <br> 
+                <p>edit the latest commit message (unpushed) </p>  
+                <code class="code">git commit --amend -m <span class="grey-fnt">"descriptive message"</span></code> <br> 
+                <p>show history of all commits in the current branch</p>  
+                <code class="code">git log </code> <br> 
+                <p>show short detail of the commits</p>  
+                <p>|-- most two recent commits</p>
+                &#11208; <code class="code">git log --oneline --graph -2</code><br> 
+                <p>|-- all commits on both local & remote</p>
+                &#11208; <code class="code">git log --oneline --graph --all</code><br> 
+                <p>|-- all commits on remote only</p>
+                &#11208; <code class="code">git log --oneline --graph --origin/main</code><br> 
+                <pre>...</pre>
+                <p>undo the last commit, but keep the changes in committed files</p>  
+                <code class="code">git reset --soft <span class="grey-fnt">HEAD | hash</span></code> <br> 
+                <p>undo the last commit, but discard the changes in committed files</p>  
+                <code class="code">git reset --hard <span class="grey-fnt">HEAD | hash</span></code> <br> 
+            </div>
+        </div>
+        
+        <div class="box-git">
+            <button type="button" class="collapsible">BRANCHING & MERGING</button>
+            <div class="collapsible-content">
+                <p><b><u>Branching</u></b></p>
+                <p>create new branch</p>  
+                <code class="code">git branch <span class="grey-fnt">branch</span> </code> <br> 
+                <p>switch branch </p>  
+                <code class="code">git checkout <span class="grey-fnt">branch</span> </code> <br> 
+                <p>or create new branch and switch HEAD reference to the new one </p>  
+                <code class="code">git checkout -b <span class="grey-fnt">branch</span> </code> <br> 
+                <p>rename the current branch</p>  
+                <code class="code">git branch -m <span class="grey-fnt">new-branch"</span> </code> <br> 
+                <pre>...</pre>
+                <p>delete the merged branch label; keep all commits on the branch</p>  
+                <code class="code">git branch -d <span class="grey-fnt">branch</span> </code> <br> 
+                <p>force delete the unmerged branch label; delete all commits</p>  
+                <code class="code">git branch -D <span class="grey-fnt">branch</span> </code> <br> 
+                <p>undo the force delete, and recover all commits  </p>  
+                <code class="code">git checkout -b <span class="grey-fnt">&lt;branch&gt; &lt;hash&gt;</span> </code> <br> 
+                <pre>...</pre>
+                <p>show all local branches</p>  
+                <code class="code">git branch </code> <br> 
+                <p>show all local and remote branches</p>  
+                <code class="code">git branch -a </code> <br> <br>
+                <p><b><u>Merging</b></u></p>
+                <p>merge branch</p>  
+                <code class="code">git merge <span class="grey-fnt">branch</span> </code> <br> 
+                <p>undo the merge </p>  
+                <code class="code">git reset --merge <span class="grey-fnt">&lt;HEAD&gt; | &lt;hash&gt;</span> </code> <br> 
+                <p>cancel a merge editor, in case of a merge conflict</p>  
+                <code class="code">git merge --abort</code> <br> 
+            </div>
+        </div>
+    
+        <div class="box-git">
+            <button type="button" class="collapsible">SYNCHRONIZE WITH REMOTE GIT</button>
+            <div class="collapsible-content">
+                <p> establish a connection to remote repo </p>
+                <p>(only when initializing Git locally, skip this for <code class="code">git clone</code>) </p> 
+                <code class="code">git remote add <span class="grey-fnt">&lt;remote&gt; &lt;url&gt;</span></code> <br> 
+                <p>rename a remote connection </p> 
+                <code class="code">git remote  rename <span class="grey-fnt">&lt;old-remote&gt; &lt;new-remote&gt;</span></code> <br> 
+                <p>remove the connection to remote repo </p>
+                <code class="code">git remote rm <span class="grey-fnt">&lt;remote&gt;</span></code> </p> 
+                <p>show info about remote repo associated with the local repo </p>
+                <code class="code">git remote --verbose </code> <br> 
+                <pre>...</pre>
+                <p>get the latest commits from origin (without merge) </p>  
+                <code class="code">git fetch </code> <br> 
+                <p>get the latest commits from origin (and merge) </p>  
+                <p>|-- make fast-forward commit, otherwise make a merge commit (default).</p>
+                &#11208; <code class="code">git pull <span class="grey-fnt">--ff</span> </code><br> 
+                <p>|-- always make a merge commit.</p>
+                &#11208; <code class="code">git pull <span class="grey-fnt">--no-ff</span> </code><br> 
+                <p>|-- only make fast-forward commit, otherwise cancel.</p>
+                &#11208; <code class="code">git pull <span class="grey-fnt">--ff-only</span> </code><br> 
+                <p>|-- merge and move a commit to a new ancestor.</p>
+                &#11208; <code class="code">git pull <span class="grey-fnt">--rebase</span> </code><br> 
+                <p>push local commits to the origin </p>  
+                <code class="code">git push -u <span class="grey-fnt">&lt;remote&gt; &lt;branch&gt; --tags</span></code> <br> 
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-git">
+        <h3>Learn more about Git</h3>
+        <div class="box-git">
+            <button type="button" class="collapsible">Resources and References</button>
+            <div class="collapsible-content ref">
+                <a href="https://www.jrebel.com/blog/git-cheat-sheet" target="_blank"><img src="assets/git1.png" alt="git-cheat-sheet" title="Git cheat sheet by jrebel.com" width="100%"></a>
+                <ul>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://git-scm.com/book/en/v2/" title="Pro Git book,by Scott Chacon and Ben Straub" >Pro Git Book</a></li>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud" title="https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud" >Learn Git with Bitbucket Cloud</a></li>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://gitimmersion.com/" title="https://gitimmersion.com/" >Git Immersion</a></li>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://www.theodinproject.com/lessons/foundations-git-basics" title="https://www.theodinproject.com/lessons/foundations-git-basics" >Git Basics</a></li>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://onlywei.github.io/explain-git-with-d3/" title="https://onlywei.github.io/explain-git-with-d3/" >Visualizing Git Concepts with D3</a></li>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://learngitbranching.js.org/" title="https://learngitbranching.js.org/" >Learn Git Branching</a></li>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://www.w3schools.com/git/default.asp?remote=github" title="https://www.w3schools.com/git/default.asp?remote=github" >Git Tutorials</a></li>
+                    <li id="ref-li">&#11208; <a id="ref" href="https://www.coursera.org/learn/introduction-git-github#modules" title="https://www.coursera.org/learn/introduction-git-github#modules" >Introduction to Git and GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let btnCollap = document.querySelectorAll(".collapsible");
+
+        for (let i=0; i < btnCollap.length; i++) {
+            btnCollap[i].addEventListener("click", function() {
+            let content = this.nextElementSibling;
+                if (content.style.display === "none") {
+                  content.style.display = "block";
+                } else {
+                  content.style.display = "none";
+                }
+            });
+        };
+    </script>
+</body>
+</html>

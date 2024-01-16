@@ -1,0 +1,55 @@
+<%- include("../partials/head.ejs") %>
+
+<body>
+    <%- include("../partials/navbar.ejs") %>
+    
+    <section class="box-blog">
+        <h1>Message</h1>
+        <form action="/add" method="post" class="box-msg">
+            <input type="text" name="title" id="title" placeholder="title.." required/>
+            <textarea type="text" name="content" id="msg" row="3" wrap="soft" placeholder="message.."> </textarea>
+            <input type="text" name="author" id="author" placeholder="author.." required/>
+            <button type="submit" id="btn-check">
+                <span class="material-symbols-outlined"> check_circle </span> 
+            </button>
+        </form>
+        
+    </section>
+
+    <section class="box-blog">
+        <form action="/sort" method="post" class="box-filter">
+            <label for="filter">Filter by:</label> 
+            <select name="options" id="filter">
+                <option value="" selected>--pick one--</option>
+                <option value="author-asc">author (A-Z)</option>
+                <option value="author-desc">author (Z-A)</option>
+                <option value="title">title</option>
+                <option value="latest">latest</option>
+            </select>
+            <button type="submit">enter</button>
+        </form>
+
+    </section>
+
+    <section class="box-blog">
+        <% blogs.forEach( blog => { %>
+            <div class="show-blog">
+                <h3> <%=blog.title%> </h3>
+                <p><small id="published"> published on <%=blog.to_char%></small></p> 
+                <span><%=blog.content%></span>
+                <p class="show-author"> - <%=blog.author%> </p>
+            </div>
+            <div id="btn-row">
+                <a href="/mod/<%=blog.key%>" class="material-symbols-outlined btn-left">edit</a> 
+                <a href="/del/<%=blog.key%>" class="material-symbols-outlined btn-right">cancel</a> 
+            </div> <br>
+        <% }) %>
+    </section>
+
+
+    
+
+    
+
+</body>
+</html>

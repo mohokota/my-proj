@@ -1,0 +1,50 @@
+<%- include("../partials/head.ejs") %>
+
+<body>
+    <%- include("../partials/navbar.ejs") %>
+
+    <section class="">
+ 
+        <div class="box-todo">
+            <h2>To-do List</h2>
+            <form action="/addtodo" method="post" class="form-todo">
+                <input type="text" class="input-todo" name="todo-item" placeholder="type here.." required />
+                <input type="text" class="input-due" name="todo-due" placeholder="mm-dd-yyyy" required />
+                <button type="submit" id="btn-add"> Add </button>
+            </form>
+        </div>
+
+        <div class="box-todo">
+            <ul class="">
+                <div class="box-header-1">
+                    <div id="total"> <b>Total tasks: </b> <%=lists.length%> </div> 
+                    <div id="due"> <b>Due</b></div>
+                </div>
+                
+                <% if(locals.lists) { %>
+                <% lists.forEach( li => { %>
+                <div class="box-header-2">
+                    <input type="checkbox"/> 
+                    <li > <%=li.item_todo%> </li> 
+                    <p > <%=li.formatted_due%>  </p>
+                    <a href="/deltodo/<%=li.id%>"><span id="btn-trash" class="material-symbols-outlined">delete</span></a>
+                </div>
+                <% }) %>
+                <% } %>
+
+            </ul>
+        </div>
+    </section>
+
+    
+    <script>
+        const ul = document.querySelector('ul').addEventListener('click', (e) => {
+            if(e.target.matches('input')){
+                let checkbox = e.target;
+                checkbox.nextElementSibling.classList.toggle('strike');
+            } 
+        })
+    </script> 
+
+</body>
+</html>
