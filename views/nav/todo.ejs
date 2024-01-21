@@ -27,7 +27,9 @@
                     <input type="checkbox"/> 
                     <li > <%=li.item_todo%> </li> 
                     <p > <%=li.formatted_due%>  </p>
-                    <a href="/deltodo/<%=li.id%>"><span id="btn-trash" class="material-symbols-outlined">delete</span></a>
+                    <a href="/deltodo/<%=li.id%>">
+                        <span id="btn-trash" class="material-symbols-outlined">delete</span>
+                    </a>
                 </div>
                 <% }) %>
                 <% } %>

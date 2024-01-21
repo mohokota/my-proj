@@ -180,10 +180,15 @@ app.get("/deltodo/:id", async (req,res) => {
         console.log(err);
     }
 })
-app.get("/about", (req,res) => {
-    res.render("nav/about");
+app.get("/price", (req,res) => {
+    res.render("nav/price", {year: new Date().getFullYear()});
 });
-
+app.get("/login", (req, res) => {
+    res.render("pages/form-signin");
+});
+app.get("/regis", (req, res) => {
+    res.render("pages/form-signup");
+});
 
 
 app.listen(port, "127.1.0.0", () => console.log("server is running on port: " + port) );

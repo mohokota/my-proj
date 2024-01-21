@@ -8,8 +8,8 @@
             <h1> Search cryptocurrency </h1>
             <p> Enter coin id and hit enter to display the current price of your favorite coins </p> <br>
             <p class="s-text"> See full list of all supported coins here: <i><a class="link link-coin" href="https://docs.google.com/spreadsheets/d/1wTTuxXt8n9q7C4NDXqQpI3wpKu1_5bGVmP9Xz0XGSyU" target="_blank" title="List of all supported coins">coins list</a></i></p>
-            <form id="form-coin" action="/coins" method="post">
-                <input type="text" name="coinid" size="43px" placeholder="e.g bitcoin.." autofocus>
+            <form class="" action="/coins" method="post">
+                <input type="text" name="coinid" placeholder="e.g bitcoin.." id="form-input" autofocus>
             </form>
 
             <% if(locals.searchCoin) { %>
@@ -43,8 +43,11 @@
     </section>
     
     <div class="box">
-        <p class="s-text">Public API has a rate limit of 30 calls/minute</p>
-        <span class="s-text">(Data fetched from: <a class="link link-coin" href="https://www.coingecko.com/" target="_blank" title="CoinGecko">CoinGecko)</a> </span>
+        <p class="s-text">Public API has a rate limit of 30 calls/minute
+            <span class="s-text">(Data fetched from: 
+                <a class="link link-coin" href="https://www.coingecko.com/" target="_blank" title="CoinGecko">CoinGecko)</a> 
+            </sapn>
+        </p>
     </div>
     
 
